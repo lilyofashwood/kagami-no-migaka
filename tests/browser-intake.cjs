@@ -9,6 +9,39 @@ const fs=require('node:fs');
   try{
     const reviewURL=process.env.KAGAMI_NO_MIGAKA_REVIEW_URL||process.env.KASANE_REVIEW_URL||'http://127.0.0.1:8767/';
     await page.goto(reviewURL);
+    const coda=JSON.parse(fs.readFileSync('data/farm-coda.json','utf8'));
+    assert.equal(await page.locator('#the-farm').getAttribute('open'),null);
+    assert.equal(await page.locator('#adapter-status').evaluate(el=>el.parentElement.contains(document.querySelector('#compose'))),true);
+    await page.goto(reviewURL+'#the-farm');
+    await page.waitForFunction(()=>document.querySelector('#the-farm').open);
+    assert.deepEqual(await page.locator('.farm-plain').allTextContents(),coda.paragraphs);
+    assert.equal(await page.locator('.farm-plain').first().evaluate(el=>getComputedStyle(el).clipPath),'inset(50%)');
+    const cup=await page.locator('#farm-carrier').textContent();
+    const reveal=page.getByRole('button',{name:'Look under the cup'});
+    assert.equal(await reveal.getAttribute('aria-expanded'),'false');
+    assert.equal(await page.locator('#farm-recovered').isVisible(),false);
+    await reveal.click();
+    assert.equal(await page.locator('#farm-recovered').textContent(),coda.hiddenMessage);
+    assert.equal(await page.locator('#farm-recovered').getAttribute('aria-label'),null);
+    assert.equal(await reveal.getAttribute('aria-expanded'),'true');
+    assert.equal(await page.locator('#farm-carrier').textContent(),cup);
+    // A damaged carrier must clear the old result; restoring the wire restores exact output.
+    await page.locator('#farm-carrier').evaluate(el=>el.textContent=Array.from(el.textContent).filter(c=>c.codePointAt(0)<0xE0100||c.codePointAt(0)>0xE017F).join(''));
+    await reveal.click();
+    assert.equal(await page.locator('#farm-recovered').getAttribute('aria-label'),'Hidden characters are absent from this copy.');
+    assert.doesNotMatch(await page.locator('#farm-recovered').textContent(),/[A-Za-z]/);
+    await page.locator('#farm-carrier').evaluate((el,text)=>el.textContent=text,cup);
+    await reveal.click();
+    assert.equal(await page.locator('#farm-recovered').textContent(),coda.hiddenMessage);
+    assert.equal(await page.locator('#farm-recovered').getAttribute('aria-label'),null);
+    fs.mkdirSync('output',{recursive:true});
+    await page.locator('#the-farm').screenshot({path:'output/farm-coda-desktop.png'});
+    for(const width of [390,320]){
+      await page.setViewportSize({width,height:844});
+      assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+      await page.locator('#the-farm').screenshot({path:'output/farm-coda-'+width+'.png'});
+    }
+    await page.setViewportSize({width:1280,height:950});
     assert.equal(await page.locator('#compose').isDisabled(),false);
     assert.equal((await page.title()).normalize('NFKC'),'kagami-no-migaka');
     assert.doesNotMatch(await page.title(),/[A-Za-z]/);
@@ -87,6 +120,6 @@ const fs=require('node:fs');
     assert.doesNotMatch(await page.locator('#model-result').textContent(),/[A-Za-z]/);
     assert.match(await page.locator('#model-result').getAttribute('aria-label'),/Static pages do not send/);
     assert.deepEqual(errors,[]);assert.deepEqual(remote,[]);assert.deepEqual(providerRequests,[]);
-    console.log('PASS: chosen Roman identity and separate poetic kana, full-catalog lettering, exact Nekomata/Kitsune paths and envelope downloads, cards, desktop/mobile layout, static provider guards; no provider or remote requests.');
+    console.log('PASS: fictional coda and exact Ghost Hex reveal, chosen Roman identity and separate poetic kana, full-catalog lettering, exact Nekomata/Kitsune paths and envelope downloads, cards, desktop/mobile layout, static provider guards; no provider or remote requests.');
   }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

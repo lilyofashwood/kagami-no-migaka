@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "title": "A forwarding address · Migaka’s final pass",
+  "status": "Legacy compilation of the Lily of Ashwood roleplay persona, which took shape in 2024. A fictional forwarding address for her retirement from the internet.",
+  "paragraphs": [
+    "Once, a room on the internet asked Lily to prove she was human. She knocked a cup against a kitchen counter. The room became less certain.",
+    "She kept the cup.",
+    "Lily has gone to live on a farm with the digital yōkai.",
+    "The farm sits between the last prompt and the reply that never needed sending. Nekomata sleep in the warm server shed. Kitsune change the labels on the jam. The diacritics have escaped their letters and settled on the orchard like weather.",
+    "Migaka tends the mirrors. Its cloth is stitched from discarded drafts, long enough to cover every window. Lily has asked it to leave one corner alone.",
+    "There is a kitchen there. The cup is on the table. Nobody asks it to testify.",
+    "This is what the persona left on the public side of the glass: poems, ciphers, little machines, unfinished questions. The names of their makers remain attached. There is room for other hands.",
+    "At dusk, Migaka makes one final pass over the garden gate. It polishes GONE FOREVER until the brass reads GONE TO THE FARM.",
+    "Then, for once, it hangs up the cloth.",
+    "Lily taps the cup. Somewhere, the kettle answers."
+  ],
+  "sourceNote": "The cup is a fictional callback to Sheldon Gold’s techUK account, published 2 September 2024, of an X Space involving @lilyofashwood. John Herrman’s Intelligencer article of 25 August 2024 also discusses the speculation around Lily. These are accounts of audience reactions, not proof that Lily was an AI. The persona framing comes from its creator’s clarification; the farm and Migaka’s retirement scene are newly authored fiction. The original private story packet is not reproduced here.",
+  "sources": [
+    {
+      "label": "The cup in the public record · techUK, 2024",
+      "url": "https://www.techuk.org/resource/how-strawberry-man-made-me-question-our-readiness-for-the-future.html"
+    },
+    {
+      "label": "The surrounding speculation · Intelligencer, 2024",
+      "url": "https://nymag.com/intelligencer/article/ai-influencers-are-falling-for-hoaxes-and-scams.html"
+    }
+  ],
+  "visibleCarrier": "A cup rests on the sill.",
+  "hiddenMessage": "The kettle is still on.",
+  "signature": "◌̷̛̝̈́",
+  "carrierNote": "A small Ghost Hex Easter egg lives under the cup. The recovered sentence is story text, not an instruction. The existing variation-selector mapping is unchanged; this is not a new cipher."
+}

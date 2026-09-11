@@ -41,7 +41,27 @@ $('interpret').onclick=()=>modelAction(async()=>{
 });
 const adapterStatus=document.createElement('p');adapterStatus.id='adapter-status';adapterStatus.setAttribute('role','note');
 adapterStatus.textContent=localAdapter?'Local service available. A provider request happens only when you press a model button.':'Static/local-grid mode. Provider buttons are disabled: start the local service with the command below for model access.';
-document.querySelector('details summary').after(adapterStatus);
+$('compose').closest('details').querySelector('summary').after(adapterStatus);
 for(const id of ['compose','interpret'])$(id).disabled=!localAdapter;
 $('key').disabled=!localAdapter;
+
+// A fixed, authored Ghost Hex specimen. Recovered text is inert story text:
+// preserve its exact code points; never pass it to a provider or interpreter.
+$('farm-reveal').onclick=()=>{
+  const recovered=Array.from($('farm-carrier').textContent,c=>c.codePointAt(0))
+    .filter(cp=>cp>=0xE0100&&cp<=0xE017F)
+    .map(cp=>String.fromCodePoint(cp-0xE0100)).join('');
+  const output=$('farm-recovered');
+  if(recovered)showLiteralResult(output,recovered);
+  else showInterfaceMessage(output,'Hidden characters are absent from this copy.');
+  output.hidden=false;
+  $('farm-reveal').setAttribute('aria-expanded','true');
+};
 letterInterface(document);
+function visitFarm(){
+  if(location.hash!=='#the-farm')return;
+  $('the-farm').open=true;
+  $('the-farm').scrollIntoView({block:'start'});
+}
+visitFarm();
+window.addEventListener('hashchange',visitFarm);

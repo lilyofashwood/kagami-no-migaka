@@ -27,3 +27,21 @@ pre[data-interface]{border-left-color:#c499c7;background:linear-gradient(90deg,#
 footer{border-top:1px solid #60415a;margin-top:40px;padding-top:28px;color:#c9adc3}a{text-underline-offset:.24em}
 @media(max-width:640px){main{padding:24px 15px}header{padding:30px 0 36px}section,details{padding:21px 17px}.grid-preview{padding:8px;gap:4px}.grid-preview span{font-size:22px;padding:11px 4px}h2{font-size:24px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* A letter on the sill; the workshop below remains a working instrument. */
+.farm-coda{scroll-margin-top:24px;border-color:#926777;background:radial-gradient(ellipse at top right,#69435b35,transparent 70%),#19131e}
+.farm-coda>summary{font-size:clamp(18px,3vw,24px);letter-spacing:.02em}
+.farm-coda[open]>summary{padding-bottom:16px;border-bottom:1px solid #785361}
+.farm-coda>.hint{max-width:74ch;margin:22px auto}
+.farm-story{max-width:65ch;margin:34px auto}
+.farm-story .farm-line{position:relative;color:#eee2dd;font:17px/1.95 Georgia,serif;margin:0 0 24px}
+.farm-story .farm-line:nth-child(2),.farm-story .farm-line:last-child{color:#ebc894}
+.farm-plain{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);clip-path:inset(50%);white-space:nowrap;border:0}
+.farm-coda .farm-mark{font-family:Georgia,"Times New Roman",serif;font-size:38px;text-align:center;color:#d4adce;margin:32px 0 18px}
+.farm-coda .farm-cup{text-align:center;font:18px/1.8 Georgia,serif;color:#ebc894}
+#farm-reveal{display:block;margin:22px auto}
+#farm-recovered:not([hidden]){padding:20px;border-left:2px solid #d4adce;background:#38263b77;font:17px/1.8 Georgia,serif;color:#f0d7ca}
+.farm-sources{margin:28px 0 0;padding:18px 20px;box-shadow:none;background:#110f17}
+.farm-sources>summary{font-size:15px}
+.farm-sources p{font-size:13px;line-height:1.8}
+@media(max-width:640px){.farm-story{margin:28px auto}.farm-story .farm-line{font-size:16px;line-height:1.9}.farm-sources{padding:15px}}
