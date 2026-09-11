@@ -219,3 +219,12 @@ python3 -m unittest discover -s tests -p 'test_*.py'
 </details>
 
 𝗋𝐞𝗅𝐞𝐚𝗌𝐞𝖽 𝐮𝗇𝖽𝐞𝗋 𝗍𝗁𝐞 [𝗆𝐢𝗍 𝗅𝐢𝖼𝐞𝗇𝗌𝐞](LICENSE) · 𝗅𝐢𝗅𝗒𝐨𝖿𝐚𝗌𝗁𝗐𝐨𝐨𝖽.
+
+<!-- garden-seam:kagami-no-migaka:start -->
+<section class="garden-seam" data-garden-seam="kagami-no-migaka" aria-label="A seam in the garden">
+<h2>⟡ 𝐚 𝗌𝐞𝐚𝗆 𝐢𝗇 𝗍𝗁𝐞 𝗀𝐚𝗋𝖽𝐞𝗇 ⟡</h2>
+<pre class="garden-seam-wire literal" data-garden-raw data-literal>𝙧͏̍︎⃝͏̥︎⃤͏͗︎҉͏̩︎⃝͏̍𝙖︎⃝͏̩︎⃝͏̍︎⃝͏̩︎⃝͏̽︎⃫𝙞͏̩︎҉͏̆︎̸͏̳︎⃥͏̽︎⃒͏̪𝙣︎̸͏̊︎⃝͏̥︎҈͏̽︎̸͏͓︎̸ ͏̊︎⃫͏͜︎҈͏͗︎⃞͏̳︎҉͏͝𝘳︎҈͏͓︎⃥͏̑︎⃪͏̳︎҉͏͗︎⃞𝘦͏͜︎҈͏̊︎⃤͏̳︎҉͏̊︎҉͏̳𝘵︎⃒͏͗︎⃞͏̪︎҉͏̽︎⃫͏̹︎⃞𝘶͏̑︎⃤͏̥︎⃫͏̿︎҉͏̥︎҉͏̊𝘳︎⃒͏̹︎⃞͏̎︎҉͏͈︎⃫͏͗︎⃞𝘯͏͓︎҈͏̑︎⃝︎҉︎҉︎⃒︎⃞︎҉𝘴︎⃫︎⃞︎⃫︎⃞ 𝘢𝘭𝘰𝘯𝘨 𝘵𝘩𝘦 𝘮𝘪𝘳𝘳𝘰𝘳
+𝘰𝘯𝘦 𝘱𝘢𝘸 𝘪𝘯 𝘵𝘩𝘦 𝘳𝘰𝘰𝘮 𝘢𝘯𝘥 𝘰𝘯𝘦 𝘣𝘦𝘵𝘸𝘦𝘦𝘯󠅁󠄠󠅤󠅩󠅧󠅩󠅴󠅡󠅬󠄠󠅹󠅯󠅫󠅡󠅩󠄠󠅢󠅯󠅲󠅲󠅯󠅷󠅳󠄠󠅴󠅨󠅥󠄠󠅰󠅡󠅵󠅳󠅥󠄠󠅢󠅥󠅴󠅷󠅥󠅥󠅮󠄠󠅡󠄠󠅱󠅵󠅥󠅳󠅴󠅩󠅯󠅮󠄠󠅡󠅮󠅤󠄠󠅩󠅴󠅳󠄠󠅥󠅣󠅨󠅯󠄮</pre>
+<p class="garden-seam-hint"><a href="https://lilyofashwood.github.io/font-garden/seams/#kagami-no-migaka" aria-label="Unfold this garden seam">𝐮𝗇𝖿𝐨𝗅𝖽 𝗍𝗁𝐞 𝗌𝐞𝐚𝗆 ↗</a></p>
+</section>
+<!-- garden-seam:kagami-no-migaka:end -->
