@@ -1,6 +1,6 @@
-# かのとこよ · 歌ノ常世 · grid workbench version 1
+# 𝗄𝐚𝗀𝐚𝗆𝐢-𝗇𝐨-𝗆𝐢𝗀𝐚𝗄𝐚 · grid workbench version 1
 
-The chosen display title is かのとこよ · 歌ノ常世 and its exact description is かがみのしきしのみがか. The selected repository is `lilyofashwood/kanotokoyo`. The title is a supplied kana reversal pair with よことのか, not a palindrome; the intentional kanji readings are separate from the reversal. This specification keeps its existing `kasane-uta.*` document identifiers for compatibility; display naming does not change either wire format.
+The chosen display title is Kagami-no-Migaka and its exact description is かがみのしきしのみがか. The selected repository is `lilyofashwood/kagami-no-migaka`. The former title かのとこよ ⇄ よことのか is preserved in README poetry as a supplied kana reversal pair, not a palindrome; its intentional kanji readings are separate from the reversal. This specification keeps its existing `kasane-uta.*` document identifiers for compatibility; display naming does not change either wire format.
 
 The recovered 5×5 Kasaneuta source and the supplied Kitsune artifact support the default tategaki and migi-yokogaki traversals below. The initial implementation selected these same paths before the fuller source arrived; the [geometry recovery note](evening-recovery-2026-09-10.md) records the corrected coordinate evidence. Earlier 4×4 and five-row, four-column experiments remain distinct from this fixed 5×5 document format.
 

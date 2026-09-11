@@ -1,5 +1,7 @@
-// Chosen kana presentation; historical method and serialized document IDs stay stable.
-export const PROJECT=Object.freeze({name:'かのとこよ · 歌ノ常世',description:'かがみのしきしのみがか',kana:'かのとこよ',kanji:'歌ノ常世',romanization:'Kanotokoyo',reverseKana:'よことのか',reverseKanji:'夜言ノ香',nameStatus:'chosen',historicalMethod:'Kasaneuta',historicalKanji:'重ね歌',repository:'lilyofashwood/kanotokoyo',repositoryNameTemporary:false});
+// Chosen presentation; historical method and serialized document IDs stay stable.
+export const PROJECT=Object.freeze({name:'Kagami-no-Migaka',description:'かがみのしきしのみがか',nameStatus:'chosen',historicalMethod:'Kasaneuta',historicalKanji:'重ね歌',repository:'lilyofashwood/kagami-no-migaka',repositoryNameTemporary:false});
+// A former title now lives in the README's poetry, not in the active project identity.
+export const POETIC_REVERSAL=Object.freeze({kana:'かのとこよ',kanji:'歌ノ常世',reverseKana:'よことのか',reverseKanji:'夜言ノ香',status:'preserved_readme_poetry',isPalindrome:false,kanjiFacesReverse:false});
 export const VERSION='kasane-uta.grid.v1';
 function scalarText(text){
   if(typeof text!=='string')throw new Error('Expected text.');
@@ -101,5 +103,5 @@ export function turnNamingCard(id){
   const reversed=graphemes(card.kana).reverse().join('');
   if(reversed!==card.reverseKana)throw new Error('Stored kana reversal does not match.');
   return {...card,reversed,status:'exact supplied kana reversal verified',
-    boundary:'A preserved proposed title with a stored reveal, not an automatic Japanese translation. The selected title is かのとこよ · 歌ノ常世; Kasaneuta remains the historical method.'};
+    boundary:'A preserved proposed title with a stored reveal, not an automatic Japanese translation. The selected title is Kagami-no-Migaka; Kasaneuta remains the historical method.'};
 }

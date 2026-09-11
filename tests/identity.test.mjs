@@ -2,28 +2,31 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,existsSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
-import {PROJECT,VERSION,DEMO,readGrid,attachExactPayload,readExactPayload} from '../core.js';
+import {PROJECT,POETIC_REVERSAL,VERSION,DEMO,readGrid,attachExactPayload,readExactPayload} from '../core.js';
 const read=path=>readFileSync(new URL('../'+path,import.meta.url),'utf8');
 
-test('chosen reversal-pair title and exact description use the canonical repository',()=>{
+test('chosen Roman title and exact poetic description use the canonical repository',()=>{
   const pkg=JSON.parse(read('package.json')),research=JSON.parse(read('data/naming-proposals.json'));
-  assert.equal(PROJECT.name,'かのとこよ · 歌ノ常世');
-  assert.equal(PROJECT.kana,'かのとこよ');
-  assert.equal(PROJECT.kanji,'歌ノ常世');
-  assert.equal(PROJECT.reverseKana,'よことのか');
-  assert.equal(PROJECT.reverseKanji,'夜言ノ香');
+  assert.equal(PROJECT.name,'Kagami-no-Migaka');
+  assert.equal(Object.hasOwn(PROJECT,'kana'),false);
+  assert.equal(POETIC_REVERSAL.kana,'かのとこよ');
+  assert.equal(POETIC_REVERSAL.kanji,'歌ノ常世');
+  assert.equal(POETIC_REVERSAL.reverseKana,'よことのか');
+  assert.equal(POETIC_REVERSAL.reverseKanji,'夜言ノ香');
+  assert.equal(POETIC_REVERSAL.status,'preserved_readme_poetry');
+  assert.equal(POETIC_REVERSAL.isPalindrome,false);
   assert.equal(PROJECT.description,'かがみのしきしのみがか');
   assert.equal(PROJECT.nameStatus,'chosen');
   assert.equal(PROJECT.historicalMethod,'Kasaneuta');
   assert.equal(PROJECT.historicalKanji,'重ね歌');
-  assert.equal(PROJECT.repository,'lilyofashwood/kanotokoyo');
+  assert.equal(PROJECT.repository,'lilyofashwood/kagami-no-migaka');
   assert.equal(PROJECT.repositoryNameTemporary,false);
   assert.equal(Object.hasOwn(PROJECT,'temporaryRepository'),false);
-  assert.equal(pkg.name,'kanotokoyo');
+  assert.equal(pkg.name,'kagami-no-migaka');
   assert.equal(pkg.title,PROJECT.name);
   assert.equal(pkg.description,PROJECT.description);
   assert.equal(pkg.repository.url,'https://github.com/'+PROJECT.repository+'.git');
-  assert.equal(pkg.homepage,'https://lilyofashwood.github.io/kanotokoyo/');
+  assert.equal(pkg.homepage,'https://lilyofashwood.github.io/kagami-no-migaka/');
   assert.ok(read('index.html').includes('<title>'+PROJECT.name+'</title>'));
   assert.ok(read('index.html').includes('aria-label="'+PROJECT.name+'"'));
   assert.ok(read('index.html').includes('name="description" content="かがみのしきしのみがか"'));
@@ -35,7 +38,7 @@ test('chosen reversal-pair title and exact description use the canonical reposit
   assert.doesNotMatch(spec,/project name pending|name is pending|traversal remains unverified|unresolved choice/iu);
   assert.ok(spec.includes('Both reproduce the exact source-backed Nekomata and Kitsune specimen readings'));
   for(const path of ['NAMING-JAPANESE.md','PROVENANCE.md','specs/grid-v1.md']){
-    assert.ok(read(path).includes('lilyofashwood/kanotokoyo'));
+    assert.ok(read(path).includes('lilyofashwood/kagami-no-migaka'));
     assert.doesNotMatch(read(path),/URL remains? pending|URL remain pending/iu);
   }
   assert.match(read('NAMING-JAPANESE.md'),/not a palindrome/iu);

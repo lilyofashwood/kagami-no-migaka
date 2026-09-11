@@ -1,8 +1,8 @@
-# かのとこよ · 歌ノ常世 · provenance
+# 𝗄𝐚𝗀𝐚𝗆𝐢-𝗇𝐨-𝗆𝐢𝗀𝐚𝗄𝐚 · provenance
 
-The chosen display title is **かのとこよ · 歌ノ常世**, with the exact companion description **かがみのしきしのみがか**. The selected source address is [lilyofashwood/kanotokoyo](https://github.com/lilyofashwood/kanotokoyo). Historical **Kasaneuta · 重ね歌** remains the method name.
+The chosen display title is **Kagami-no-Migaka**, with the exact companion description **かがみのしきしのみがか**. The selected source address is [lilyofashwood/kagami-no-migaka](https://github.com/lilyofashwood/kagami-no-migaka). Historical **Kasaneuta · 重ね歌** remains the method name.
 
-The title's supplied kana reverse to **よことのか · 夜言ノ香**: a reversal pair, not a palindrome. **歌=か** is an intentional reading in this coined title. The kanji faces neither reverse into one another nor establish a standard Japanese compound. The longer description remains a separate poetic palindrome, not the brand name.
+The former title **かのとこよ · 歌ノ常世** now lives in the README's poetry beside **よことのか · 夜言ノ香**: a reversal pair, not a palindrome or active brand. **歌=か** is an intentional reading in this coined phrase. The kanji faces neither reverse into one another nor establish a standard Japanese compound. The longer description remains a separate poetic palindrome.
 
 The workbench keeps `kasane-uta.grid.v1` and `kasane-uta.utf8-hex.v1` unchanged. A presentation title never changes a stored document's protocol. Downloads remain `kasane-uta-grid.json`.
 

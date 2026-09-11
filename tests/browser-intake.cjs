@@ -7,12 +7,13 @@ const fs=require('node:fs');
   page.on('request',r=>{if(r.url().includes('/api/compose'))providerRequests.push(r.url());});
   page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>{if(/^https?:/.test(r.url())&&!r.url().startsWith('http://127.0.0.1:'))remote.push(r.url());});
   try{
-    const reviewURL=process.env.KANOTOKOYO_REVIEW_URL||process.env.KASANE_REVIEW_URL||'http://127.0.0.1:8767/';
+    const reviewURL=process.env.KAGAMI_NO_MIGAKA_REVIEW_URL||process.env.KASANE_REVIEW_URL||'http://127.0.0.1:8767/';
     await page.goto(reviewURL);
     assert.equal(await page.locator('#compose').isDisabled(),false);
-    assert.equal(await page.title(),'かのとこよ · 歌ノ常世');
+    assert.equal(await page.title(),'Kagami-no-Migaka');
+    assert.equal(await page.locator('h1').getAttribute('aria-label'),'Kagami-no-Migaka');
     assert.equal(await page.locator('meta[name="description"]').getAttribute('content'),'かがみのしきしのみがか');
-    assert.equal((await page.locator('h1').textContent()).normalize('NFKC'),'かのとこよ · 歌ノ常世 かがみのしきしのみがか');
+    assert.equal((await page.locator('h1').textContent()).normalize('NFKC'),'kagami-no-migaka かがみのしきしのみがか');
     await page.getByRole('button',{name:'Load recovered Nekomata specimen'}).click();
     const receipt=JSON.parse(await page.locator('#receipt').textContent());
     assert.equal(receipt.readings.migi_yokogaki,'秘猫又今醒隠影爪閃動妖魂夜歌招変相双尾舞起動形真現');
@@ -52,6 +53,6 @@ const fs=require('node:fs');
     assert.match((await page.locator('#adapter-status').textContent()).normalize('NFKC'),/provider buttons are disabled/);
     assert.equal(await page.locator('#grid>span').count(),25);
     assert.deepEqual(errors,[]);assert.deepEqual(remote,[]);assert.deepEqual(providerRequests,[]);
-    console.log('PASS: chosen kana identity, full-catalog lettering, exact Nekomata/Kitsune paths and envelope downloads, cards, desktop/mobile layout, static provider guards; no provider or remote requests.');
+    console.log('PASS: chosen Roman identity and separate poetic kana, full-catalog lettering, exact Nekomata/Kitsune paths and envelope downloads, cards, desktop/mobile layout, static provider guards; no provider or remote requests.');
   }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

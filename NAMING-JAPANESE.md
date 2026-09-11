@@ -1,14 +1,14 @@
-# かのとこよ · 歌ノ常世 · 𝗇𝐚𝗆𝐢𝗇𝗀 𝗇𝐨𝗍𝐞𝗌
+# 𝗄𝐚𝗀𝐚𝗆𝐢-𝗇𝐨-𝗆𝐢𝗀𝐚𝗄𝐚 · 𝗇𝐚𝗆𝐢𝗇𝗀 𝗇𝐨𝗍𝐞𝗌
 
-The chosen title is **かのとこよ · 歌ノ常世**, romanized **Kanotokoyo**. Its exact companion description remains **かがみのしきしのみがか** as poetry and description, not as the brand name.
+The chosen title is **Kagami-no-Migaka**, with the exact companion description **かがみのしきしのみがか** as poetry and description. The earlier **かのとこよ · 歌ノ常世** title now belongs to the README's poetry, not the active project identity.
 
-## A reversible pair, not a palindrome
+## A preserved poetic pair, not a palindrome
 
 **歌ノ常世（かのとこよ） ⇄ 夜言ノ香（よことのか）**
 
 Every supplied kana reverses exactly. “The song's eternal realm” and “fragrance of night words” are editorial glosses for the two deliberately coined faces. **歌=か** is an intentional reading here; neither complete title is asserted to be a standard Japanese compound. The kanji faces do not themselves reverse. [常世](https://www.kanjipedia.jp/kotoba/0003510000) supplies a component, not proof of the complete coinage.
 
-The ASCII slug is **`kanotokoyo`**. The canonical source address is [lilyofashwood/kanotokoyo](https://github.com/lilyofashwood/kanotokoyo). Protocol IDs and the local directory remain unchanged.
+The ASCII slug is **`kagami-no-migaka`**. The canonical source address is [lilyofashwood/kagami-no-migaka](https://github.com/lilyofashwood/kagami-no-migaka). Protocol IDs and the local directory remain unchanged. The Roman spelling is not claimed to reverse into a Japanese phrase; exact reversal tests apply only to the supplied kana poems below and the preserved pair above.
 
 ## Separate poetic palindromes
 

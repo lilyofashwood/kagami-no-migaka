@@ -296,7 +296,7 @@ export function letterText(text,register='chaos-noodle-ii'){
 }
 export function letterInterface(root=document){
   const headings=[...root.querySelectorAll('h2,summary,h3')];
-  const body=[...root.querySelectorAll('header p,section p:not([aria-live]),details p,label,button,option,footer,a')];
+  const body=[...root.querySelectorAll('h1,header p,section p:not([aria-live]),details p,label,button,option,footer,a')];
   const entries=[...headings.map((el,i)=>[el,UI_REGISTERS[1+i%(UI_REGISTERS.length-1)]]),...body.map(el=>[el,'chaos-noodle-ii'])];
   for(const [element,register] of entries){
     if(element.closest('pre,code,textarea,input,[data-literal],[aria-live]'))continue;

@@ -1,14 +1,11 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "method_identity": "Kasaneuta",
   "project_identity": {
-    "name": "かのとこよ · 歌ノ常世",
+    "name": "Kagami-no-Migaka",
     "description": "かがみのしきしのみがか",
-    "kana": "かのとこよ",
-    "kanji": "歌ノ常世",
-    "romanization": "Kanotokoyo",
     "name_status": "chosen",
-    "repository": "lilyofashwood/kanotokoyo",
+    "repository": "lilyofashwood/kagami-no-migaka",
     "repository_name_temporary": false,
     "local_folder": "kasane-uta",
     "grid_version": "kasane-uta.grid.v1",
@@ -16,10 +13,10 @@
   },
   "decision": {
     "status": "display_title_and_repository_slug_chosen",
-    "chosen_title": "かのとこよ · 歌ノ常世",
+    "chosen_title": "Kagami-no-Migaka",
     "chosen_description": "かがみのしきしのみがか",
     "repository_rename_authorized": true,
-    "note": "Kanotokoyo is the selected title and repository slug. Its kana form a reversal pair, not a palindrome. The longer description is retained as separate poetry."
+    "note": "Kagami-no-Migaka is the selected display title; kagami-no-migaka is the repository slug. The former title's kana and kanji faces are retained in README poetry as a reversal pair, not as active branding or a palindrome. The longer description remains a separate poetic palindrome."
   },
   "reversal_contract": {
     "stored_normalization": "NFC",
@@ -42,7 +39,7 @@
       "language_status": "intentional_composed_inscription"
     }
   ],
-  "selected_pair": {
+  "poetic_pair": {
       "id": "kanotokoyo_yokotonoka",
       "front": "歌ノ常世",
       "kana": "かのとこよ",
@@ -51,7 +48,7 @@
       "front_gloss": "the song's eternal realm",
       "reverse_gloss": "fragrance of night words",
       "language_status": "coined_titles_with_supplied_readings",
-      "status": "selected_title_reversal_pair",
+      "status": "preserved_readme_poetry",
       "is_palindrome": false,
       "kanji_faces_reverse": false,
       "reading_note": "歌=か is intentional in this coined title; the complete compounds are not asserted as standard Japanese expressions.",

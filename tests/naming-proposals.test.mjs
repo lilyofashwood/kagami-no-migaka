@@ -22,8 +22,8 @@ test('the separate description and window inscriptions remain exact kana palindr
   }
 });
 
-test('the selected title is an exact kana reversal pair, not a palindrome or reversible kanji',()=>{
-  const pair=record.selected_pair;
+test('the preserved poetic title is an exact kana reversal pair, not a palindrome or reversible kanji',()=>{
+  const pair=record.poetic_pair;
   assert.equal(pair.front,'歌ノ常世');assert.equal(pair.reveal,'夜言ノ香');
   assert.equal(pair.kana,'かのとこよ');assert.equal(pair.reverse_kana,'よことのか');
   assert.equal(checked(pair.kana),pair.reverse_kana);
@@ -32,7 +32,7 @@ test('the selected title is an exact kana reversal pair, not a palindrome or rev
   assert.notEqual(reverse(pair.front),pair.reveal);
   assert.equal(pair.is_palindrome,false);
   assert.equal(pair.kanji_faces_reverse,false);
-  assert.equal(pair.status,'selected_title_reversal_pair');
+  assert.equal(pair.status,'preserved_readme_poetry');
   assert.equal(pair.language_status,'coined_titles_with_supplied_readings');
   assert.ok(pair.reading_note.includes('歌=か'));
 });
@@ -47,11 +47,13 @@ test('reversal proof never silently repairs voicing, kana size or decomposed inp
   assert.equal(record.brand_review.clearance,'not_established');
 });
 
-test('canonical repository identity keeps the chosen kana and wire formats intact',()=>{
-  assert.equal(record.project_identity.name,'かのとこよ · 歌ノ常世');
-  assert.equal(record.project_identity.kana,record.selected_pair.kana);
+test('canonical Roman repository identity keeps poetic kana separate and wire formats intact',()=>{
+  assert.equal(record.schema_version,3);
+  assert.equal(record.project_identity.name,'Kagami-no-Migaka');
+  assert.equal(Object.hasOwn(record.project_identity,'kana'),false);
   assert.equal(record.project_identity.description,'かがみのしきしのみがか');
-  assert.equal(record.project_identity.repository,'lilyofashwood/kanotokoyo');
+  assert.equal(record.project_identity.repository,'lilyofashwood/kagami-no-migaka');
+  assert.equal(record.decision.chosen_title,'Kagami-no-Migaka');
   assert.equal(record.project_identity.repository_name_temporary,false);
   assert.equal(record.decision.repository_rename_authorized,true);
   assert.equal(record.decision.status,'display_title_and_repository_slug_chosen');

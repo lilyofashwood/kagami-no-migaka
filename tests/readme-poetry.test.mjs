@@ -5,8 +5,10 @@ import { readFileSync } from 'node:fs';
 const readme = readFileSync(new URL('../README.md', import.meta.url), 'utf8');
 const reverse = value => [...value.normalize('NFC')].reverse().join('');
 
-test('the title is paired and every documented kana palindrome truly reverses', () => {
-  assert.ok(readme.startsWith('# かのとこよ · 歌ノ常世\n\nかがみのしきしのみがか\n'));
+test('the chosen Roman name heads the poetry and every documented kana palindrome truly reverses', () => {
+  assert.ok(readme.normalize('NFKC').startsWith('# kagami-no-migaka\n\nかがみのしきしのみがか\n'));
+  assert.ok(readme.includes('https://lilyofashwood.github.io/kagami-no-migaka/'));
+  assert.ok(!readme.includes('https://lilyofashwood.github.io/kanotokoyo/'));
   for (const value of [
     'かがみのしきしのみがか',
     'まどかららかどま', 'らかどままどから',
@@ -22,7 +24,9 @@ test('the night-song is a reversal pair, with a separately described kanji face'
   assert.equal(reverse('よことのか'), 'かのとこよ');
   assert.notEqual(reverse('よことのか'), 'よことのか');
   assert.ok(readme.includes('よことのか ⇄ かのとこよ'));
-  assert.ok(readme.includes('歌ノ常世'));
+  assert.ok(readme.includes('夜言ノ香 ⇄ 歌ノ常世'));
+  assert.ok(readme.includes('<a id="a-song-through-the-mirror"></a>'));
+  assert.ok(readme.indexOf('## よことのか ⇄ かのとこよ') < readme.indexOf('<details>'));
   assert.match(readme.normalize('NFKC'), /reversal pair, not a palindrome/);
 });
 
