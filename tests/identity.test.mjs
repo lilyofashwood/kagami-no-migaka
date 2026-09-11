@@ -36,12 +36,12 @@ test('chosen Roman title and exact poetic description use the canonical reposito
   const spec=read('specs/grid-v1.md');
   assert.ok(spec.includes('The chosen display title is '+PROJECT.name));
   assert.doesNotMatch(spec,/project name pending|name is pending|traversal remains unverified|unresolved choice/iu);
-  assert.ok(spec.includes('Both reproduce the exact source-backed Nekomata and Kitsune specimen readings'));
+  assert.ok(spec.includes('Both reproduce the exact Nekomata and Kitsune specimen readings'));
   for(const path of ['NAMING-JAPANESE.md','PROVENANCE.md','specs/grid-v1.md']){
     assert.ok(read(path).includes('lilyofashwood/kagami-no-migaka'));
     assert.doesNotMatch(read(path),/URL remains? pending|URL remain pending/iu);
   }
-  assert.match(read('NAMING-JAPANESE.md'),/not a palindrome/iu);
+  assert.match(read('NAMING-JAPANESE.md'),/kana reverse exactly into one another/iu);
   assert.ok(read('NAMING-JAPANESE.md').includes('歌=か'));
 });
 

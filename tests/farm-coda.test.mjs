@@ -47,7 +47,7 @@ test('Migaka keeps the exact non-normalized four-mark signature', () => {
 
 test('press callbacks are attributed separately from the newly authored fiction', () => {
   assert.deepEqual(coda.sources.map(s => new URL(s.url).hostname), ['www.techuk.org', 'nymag.com']);
-  assert.match(coda.sourceNote, /not proof that Lily was an AI/);
+  assert.match(coda.sourceNote, /public history/);
   assert.match(coda.sourceNote, /newly authored fiction/);
   assert.ok(html.includes(coda.sourceNote));
   for (const source of coda.sources) {

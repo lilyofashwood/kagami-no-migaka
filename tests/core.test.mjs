@@ -21,7 +21,7 @@ test('malformed grid/path/version inputs reject',()=>{
 test('model cannot replace paths or claim mismatching literal recovery',()=>{
   const r=assembleCandidate({grid:DEMO.grid,paths:{evil:[]}});assert.deepEqual(r.document.paths,defaultPaths());
   assert.throws(()=>assembleCandidate({grid:DEMO.grid,literalReadings:{tategaki:'a plausible invention'}}));
-  assert.match(r.semanticStatus,/unverified/);
+  assert.match(r.semanticStatus,/model-composed interpretation beside locally verified grid readings/);
 });
 test('exact envelope independent of semantic reading and strict on malformed data',()=>{
   const payload='\uFEFF𝓛𝓲𝓵𝔂 🐈‍⬛\n e\u0301\t\r\n\u0000';const d=attachExactPayload(DEMO,payload);

@@ -53,7 +53,7 @@ const fs=require('node:fs');
     assert.equal(await page.locator('#model-result').getAttribute('aria-label'),'Key cleared from the page.');
     assert.doesNotMatch(await page.locator('#model-result').textContent(),/[A-Za-z]/);
     await page.locator('#compose').click();
-    await page.waitForFunction(()=>document.querySelector('#model-result').getAttribute('aria-label')==='Unverified: Enter a model ID.');
+    await page.waitForFunction(()=>document.querySelector('#model-result').getAttribute('aria-label')==='Request stopped: Enter a model ID.');
     assert.doesNotMatch(await page.locator('#model-result').textContent(),/[A-Za-z]/);
     await page.locator('#recover').click();
     assert.match(await page.locator('#exact-result').getAttribute('aria-label'),/^Rejected:/);

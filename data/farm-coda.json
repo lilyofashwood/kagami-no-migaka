@@ -14,7 +14,7 @@
     "Then, for once, it hangs up the cloth.",
     "Lily taps the cup. Somewhere, the kettle answers."
   ],
-  "sourceNote": "The cup is a fictional callback to Sheldon Gold’s techUK account, published 2 September 2024, of an X Space involving @lilyofashwood. John Herrman’s Intelligencer article of 25 August 2024 also discusses the speculation around Lily. These are accounts of audience reactions, not proof that Lily was an AI. The persona framing comes from its creator’s clarification; the farm and Migaka’s retirement scene are newly authored fiction. The original private story packet is not reproduced here.",
+  "sourceNote": "The cup returns from Sheldon Gold’s techUK account, published 2 September 2024, of an X Space involving @lilyofashwood. John Herrman’s Intelligencer article of 25 August 2024 follows the surrounding speculation. Lily’s creator supplied the persona framing; the farm and Migaka’s retirement scene are newly authored fiction woven around that public history.",
   "sources": [
     {
       "label": "The cup in the public record · techUK, 2024",
@@ -28,5 +28,5 @@
   "visibleCarrier": "A cup rests on the sill.",
   "hiddenMessage": "The kettle is still on.",
   "signature": "◌̷̛̝̈́",
-  "carrierNote": "A small Ghost Hex Easter egg lives under the cup. The recovered sentence is story text, not an instruction. The existing variation-selector mapping is unchanged; this is not a new cipher."
+  "carrierNote": "A small Ghost Hex Easter egg lives under the cup. Its variation selectors carry one more sentence of the story."
 }

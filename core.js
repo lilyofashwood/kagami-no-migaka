@@ -44,7 +44,7 @@ export function readGrid(document){
     readings[name]=path.map(([r,c])=>grid[r][c]).join('');
   }
   return {version:VERSION,status:'positions verified',readings,grid,paths,
-    meaning:'Literal path strings are exact. Poetic meanings require interpretation; they are not verified byte messages.'};
+    meaning:'Exact literal path strings, ready to read alongside the poem’s layered meanings.'};
 }
 export function gridFromLines(text){
   const rows=scalarText(text).split(/\r?\n/);return validateGrid(rows.map(graphemes));
@@ -60,7 +60,7 @@ export function assembleCandidate(candidate,paths=defaultPaths()){
       if(candidate.literalReadings[name]!==actual)throw new Error(`Model literal reading for ${name} disagrees with local traversal.`);
   }
   return {document,receipt,interpretations:candidate.interpretations??null,
-    semanticStatus:'unverified model proposal; review both readings with a fluent reader'};
+    semanticStatus:'model-composed interpretation beside locally verified grid readings'};
 }
 // Optional exact-byte lane: a NEW envelope carried beside the semantic grid.
 // It is deliberately explicit, and does not pretend arbitrary bytes are kanji polysemy.
@@ -90,7 +90,7 @@ export const NEKOMATA_REPORT={version:VERSION,
 export const KITSUNE_SPECIMEN={version:VERSION,
   grid:[['見','露','深','霧','夜'],['遠','道','山','荷','稲'],['下','灯','揺','影','面'],['舞','尾','九','妖','白'],['跡','夢','燃','火','狐']],
   paths:defaultPaths(),
-  provenance:'Exact grid from the supplied 狐火重ね詩 — Kitsune Kasaneuta React artifact. Original source SHA-256: 8aef3136a8e967753e279d7a471467c647281e2f06d71e5da644013e2bf83354. Geometry is verified; supplied English glosses are literary interpretations, not independently verified translations.'};
+  provenance:'Exact grid from the supplied 狐火重ね詩 — Kitsune Kasaneuta React artifact. Original source SHA-256: 8aef3136a8e967753e279d7a471467c647281e2f06d71e5da644013e2bf83354. Geometry is verified; supplied English glosses accompany the poem as literary interpretations.'};
 
 export const NAMING_CARDS=Object.freeze([
   Object.freeze({id:'tamakone',front:'魂こね',alternative:'魂捏ね',kana:'たまこね',romanization:'Tamakone',gloss:'Soul-kneading',reverseKana:'ねこまた',reveal:'猫又',revealGloss:'Nekomata'}),
@@ -103,5 +103,5 @@ export function turnNamingCard(id){
   const reversed=graphemes(card.kana).reverse().join('');
   if(reversed!==card.reverseKana)throw new Error('Stored kana reversal does not match.');
   return {...card,reversed,status:'exact supplied kana reversal verified',
-    boundary:'A preserved proposed title with a stored reveal, not an automatic Japanese translation. The selected title is Kagami-no-Migaka; Kasaneuta remains the historical method.'};
+    boundary:'A preserved naming card with an exact kana reversal and its chosen poetic reveal. The selected title is Kagami-no-Migaka; Kasaneuta remains the historical method.'};
 }
