@@ -10,7 +10,21 @@ const fs=require('node:fs');
     const reviewURL=process.env.KAGAMI_NO_MIGAKA_REVIEW_URL||process.env.KASANE_REVIEW_URL||'http://127.0.0.1:8767/';
     await page.goto(reviewURL);
     assert.equal(await page.locator('#compose').isDisabled(),false);
-    assert.equal(await page.title(),'Kagami-no-Migaka');
+    assert.equal((await page.title()).normalize('NFKC'),'kagami-no-migaka');
+    assert.doesNotMatch(await page.title(),/[A-Za-z]/);
+    for(const id of ['exact-result','model-result']){
+      assert.doesNotMatch(await page.locator('#'+id).textContent(),/[A-Za-z]/);
+      assert.match(await page.locator('#'+id).getAttribute('aria-label'),/[A-Za-z]/);
+    }
+    await page.locator('#forget').click();
+    assert.equal(await page.locator('#model-result').getAttribute('aria-label'),'Key cleared from the page.');
+    assert.doesNotMatch(await page.locator('#model-result').textContent(),/[A-Za-z]/);
+    await page.locator('#compose').click();
+    await page.waitForFunction(()=>document.querySelector('#model-result').getAttribute('aria-label')==='Unverified: Enter a model ID.');
+    assert.doesNotMatch(await page.locator('#model-result').textContent(),/[A-Za-z]/);
+    await page.locator('#recover').click();
+    assert.match(await page.locator('#exact-result').getAttribute('aria-label'),/^Rejected:/);
+    assert.doesNotMatch(await page.locator('#exact-result').textContent(),/[A-Za-z]/);
     assert.equal(await page.locator('h1').getAttribute('aria-label'),'Kagami-no-Migaka');
     assert.equal(await page.locator('meta[name="description"]').getAttribute('content'),'かがみのしきしのみがか');
     assert.equal((await page.locator('h1').textContent()).normalize('NFKC'),'kagami-no-migaka かがみのしきしのみがか');
@@ -23,6 +37,12 @@ const fs=require('node:fs');
     const fox=JSON.parse(await page.locator('#receipt').textContent());
     assert.equal(fox.readings.tategaki,'夜稲面白狐霧荷影妖火深山揺九燃露道灯尾夢見遠下舞跡');
     assert.equal(fox.readings.migi_yokogaki,'夜霧深露見稲荷山道遠面影揺灯下白妖九尾舞狐火燃夢跡');
+    const exact='\uFEFFhello 🐈‍⬛ e\u0301\t\r\n';
+    await page.locator('#exact').fill(exact);await page.locator('#attach').click();
+    // Native textarea newline handling is independent of the codec; capture entered bytes.
+    const entered=await page.locator('#exact').inputValue();
+    assert.equal(JSON.parse(await page.locator('#exact-result').textContent()).payload,entered);
+    assert.equal(await page.locator('#exact-result').getAttribute('aria-label'),null);
     await page.locator('#exact').fill('hello');await page.locator('#attach').click();
     const pendingDownload=page.waitForEvent('download');await page.locator('#download').click();
     const download=await pendingDownload;assert.equal(download.suggestedFilename(),'kasane-uta-grid.json');
@@ -31,11 +51,15 @@ const fs=require('node:fs');
     assert.deepEqual(document.exactPayload,{version:'kasane-uta.utf8-hex.v1',length:5,hexadecimal:'68656c6c6f',crc32:'3610a686'});
     for(const name of ['Tamakone','Yotaki','Binetsuki'])await page.getByRole('button',{name:'Turn '+name}).click();
     for(const reveal of ['猫又','来たよ','狐火'])assert.ok((await page.locator('#naming-cards').textContent()).includes(reveal));
+    for(const output of await page.locator('#naming-cards [aria-live]').all()){
+      assert.doesNotMatch(await output.textContent(),/[A-Za-z]/);
+      assert.match(await output.getAttribute('aria-label'),/[A-Za-z]/);
+    }
     fs.mkdirSync('output',{recursive:true});await page.locator('#naming-cards').screenshot({path:'output/naming-cards-desktop.png'});
     assert.ok(await page.locator('[data-garden-register]').count()>20);
     const plainNarrative=await page.evaluate(()=>{
       const walker=document.createTreeWalker(document.querySelector('main'),NodeFilter.SHOW_TEXT),found=[];
-      while(walker.nextNode()){const node=walker.currentNode;if(node.parentElement.closest('pre,code,textarea,input,[data-literal],[aria-live]'))continue;if(/[A-Za-z]/.test(node.nodeValue))found.push(node.nodeValue);}
+      while(walker.nextNode()){const node=walker.currentNode;if(node.parentElement.closest('code,textarea,input,[data-literal]'))continue;if(/[A-Za-z]/.test(node.nodeValue))found.push(node.nodeValue);}
       return found;
     });
     assert.deepEqual(plainNarrative,[]);
@@ -44,6 +68,13 @@ const fs=require('node:fs');
     assert.equal(await page.locator('h1').evaluate(node=>getComputedStyle(node).wordBreak),'keep-all');
     await page.locator('#naming-cards').screenshot({path:'output/naming-cards-mobile.png'});
     await page.screenshot({path:'output/workshop-mobile.png',fullPage:true});
+    const expected={structural:'庭静映光月路夢葉渡風音水眠影花歌夜星間雲空遠残露朝',nekomata:'秘猫又今醒隠影爪閃動妖魂夜歌招変相双尾舞起動形真現',kitsune:'夜霧深露見稲荷山道遠面影揺灯下白妖九尾舞狐火燃夢跡'};
+    for(const specimen of ['structural','nekomata','kitsune','unknown','__proto__']){
+      await page.goto(reviewURL+'?specimen='+specimen+'&payload=not-imported&key=not-imported');
+      await page.waitForFunction(()=>document.querySelector('#grid').children.length===25);
+      assert.equal(JSON.parse(await page.locator('#receipt').textContent()).readings.migi_yokogaki,Object.hasOwn(expected,specimen)?expected[specimen]:expected.structural);
+      assert.equal(await page.locator('#key').inputValue(),'');assert.equal((await page.locator('#exact').inputValue()).startsWith('The door remembers.'),true);
+    }
     const staticURL=reviewURL+'?static=1';
     await page.route(staticURL,route=>route.fulfill({status:200,contentType:'text/html',body:fs.readFileSync('index.html','utf8')}));
     await page.goto(staticURL);
@@ -52,6 +83,9 @@ const fs=require('node:fs');
     assert.equal(await page.locator('#key').isDisabled(),true);
     assert.match((await page.locator('#adapter-status').textContent()).normalize('NFKC'),/provider buttons are disabled/);
     assert.equal(await page.locator('#grid>span').count(),25);
+    await page.locator('#compose').evaluate(element=>element.onclick());
+    assert.doesNotMatch(await page.locator('#model-result').textContent(),/[A-Za-z]/);
+    assert.match(await page.locator('#model-result').getAttribute('aria-label'),/Static pages do not send/);
     assert.deepEqual(errors,[]);assert.deepEqual(remote,[]);assert.deepEqual(providerRequests,[]);
     console.log('PASS: chosen Roman identity and separate poetic kana, full-catalog lettering, exact Nekomata/Kitsune paths and envelope downloads, cards, desktop/mobile layout, static provider guards; no provider or remote requests.');
   }finally{await browser.close();}

@@ -1,18 +1,22 @@
 import {DEMO,VERSION,NEKOMATA_REPORT,KITSUNE_SPECIMEN,NAMING_CARDS,turnNamingCard,readGrid,assembleCandidate,attachExactPayload,readExactPayload} from './core.js';
-import {letterInterface} from './lettering.js';
-const $=id=>document.getElementById(id);const show=(x,id='receipt')=>$(id).textContent=typeof x==='string'?x:JSON.stringify(x,null,2);
+import {letterInterface,showInterfaceMessage,showLiteralResult,interfaceChoice} from './lettering.js';
+const $=id=>document.getElementById(id);
+const show=(x,id='receipt')=>typeof x==='string'?showInterfaceMessage($(id),x):showLiteralResult($(id),x);
+show($('exact-result').textContent,'exact-result');show($('model-result').textContent,'model-result');
 const get=()=>JSON.parse($('document').value);const put=x=>$('document').value=JSON.stringify(x,null,2);
 const localAdapter=!!document.querySelector('meta[name="layered-song-local-adapter"][content="v1"]')&&/^http:\/\/127\.0\.0\.1(?::\d+)?$/.test(location.origin);
 function run(fn,id='receipt'){try{fn();}catch(e){show('Rejected: '+e.message,id);}}
 function verify(){const result=readGrid(get());show(result);$('grid').replaceChildren();result.grid.forEach((row,r)=>row.forEach((cell,c)=>{const box=document.createElement('span');box.textContent=cell;const coordinate=document.createElement('small');coordinate.textContent=`[${r}, ${c}]`;box.append(coordinate);$('grid').append(box);}));return result;}
-$('verify').onclick=()=>run(verify);$('example').onclick=()=>run(()=>{put(DEMO);verify();});put(DEMO);verify();
+const specimens={structural:DEMO,nekomata:NEKOMATA_REPORT,kitsune:KITSUNE_SPECIMEN};
+$('verify').onclick=()=>run(verify);$('example').onclick=()=>run(()=>{put(DEMO);verify();});
+put(specimens[interfaceChoice(location.search,'specimen',Object.keys(specimens),'structural')]);verify();
 const reportButton=document.createElement('button');reportButton.id='historical-report';reportButton.className='secondary';reportButton.textContent='Load recovered Nekomata specimen';reportButton.onclick=()=>run(()=>{put(NEKOMATA_REPORT);verify();});$('example').after(reportButton);
 const foxButton=document.createElement('button');foxButton.id='kitsune-specimen';foxButton.className='secondary';foxButton.textContent='Load source-backed Kitsune specimen';foxButton.onclick=()=>run(()=>{put(KITSUNE_SPECIMEN);verify();});reportButton.after(foxButton);
 document.querySelector('section .hint').textContent='Choose the structural example, the recovered Nekomata grid, or the supplied Kitsune artifact. Each follows the same two verified paths. Literary meanings remain interpretations. Coordinates are [row, column], beginning at zero.';
 const cards=document.createElement('section');cards.id='naming-cards';
 const heading=document.createElement('h2');heading.textContent='Three preserved naming proposals';cards.append(heading);
 const note=document.createElement('p');note.className='hint';note.textContent='The selected title is Kagami-no-Migaka. The former title かのとこよ · 歌ノ常世 lives in the README poetry beside よことのか · 夜言ノ香: a reversal pair, not a palindrome. Kasaneuta remains the historical method. These earlier proposed cards turn supplied kana, not kanji or Roman spelling. They do not define a general reversal rule for small kana, long vowels or combining voicing marks.';cards.append(note);
-for(const card of NAMING_CARDS){const block=document.createElement('div');block.className='naming-card';const title=document.createElement('h3');title.textContent=`${card.front}（${card.kana}）· ${card.romanization}`;const gloss=document.createElement('p');gloss.textContent=card.gloss;const button=document.createElement('button');button.textContent=`Turn ${card.romanization}`;const output=document.createElement('p');output.setAttribute('aria-live','polite');button.onclick=()=>{const receipt=turnNamingCard(card.id);output.textContent=`${receipt.kana} ⇄ ${receipt.reversed} · ${receipt.reveal} · ${receipt.revealGloss}`;};block.append(title,gloss,button,output);cards.append(block);}
+for(const card of NAMING_CARDS){const block=document.createElement('div');block.className='naming-card';const title=document.createElement('h3');title.textContent=`${card.front}（${card.kana}）· ${card.romanization}`;const gloss=document.createElement('p');gloss.textContent=card.gloss;const button=document.createElement('button');button.textContent=`Turn ${card.romanization}`;const output=document.createElement('p');output.setAttribute('aria-live','polite');button.onclick=()=>{const receipt=turnNamingCard(card.id);showInterfaceMessage(output,`${receipt.kana} ⇄ ${receipt.reversed} · ${receipt.reveal} · ${receipt.revealGloss}`);};block.append(title,gloss,button,output);cards.append(block);}
 document.querySelector('footer').before(cards);
 $('attach').onclick=()=>run(()=>{const result=attachExactPayload(get(),$('exact').value);put(result);show(readExactPayload(result),'exact-result');},'exact-result');
 $('recover').onclick=()=>run(()=>show(readExactPayload(get()),'exact-result'),'exact-result');
