@@ -1,0 +1,1 @@
+{"name":"kanotokoyo","title":"かのとこよ · 歌ノ常世","description":"かがみのしきしのみがか","version":"1.0.0","private":true,"type":"module","repository":{"type":"git","url":"https://github.com/lilyofashwood/kanotokoyo.git"},"homepage":"https://lilyofashwood.github.io/kanotokoyo/","scripts":{"test":"node --test tests/*.test.mjs","start":"python3 server.py --port 8767"}}

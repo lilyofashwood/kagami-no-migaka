@@ -1,0 +1,66 @@
+{
+  "schema_version": 2,
+  "method_identity": "Kasaneuta",
+  "project_identity": {
+    "name": "かのとこよ · 歌ノ常世",
+    "description": "かがみのしきしのみがか",
+    "kana": "かのとこよ",
+    "kanji": "歌ノ常世",
+    "romanization": "Kanotokoyo",
+    "name_status": "chosen",
+    "repository": "lilyofashwood/kanotokoyo",
+    "repository_name_temporary": false,
+    "local_folder": "kasane-uta",
+    "grid_version": "kasane-uta.grid.v1",
+    "exact_payload_version": "kasane-uta.utf8-hex.v1"
+  },
+  "decision": {
+    "status": "display_title_and_repository_slug_chosen",
+    "chosen_title": "かのとこよ · 歌ノ常世",
+    "chosen_description": "かがみのしきしのみがか",
+    "repository_rename_authorized": true,
+    "note": "Kanotokoyo is the selected title and repository slug. Its kana form a reversal pair, not a palindrome. The longer description is retained as separate poetry."
+  },
+  "reversal_contract": {
+    "stored_normalization": "NFC",
+    "unit": "extended_grapheme_cluster",
+    "transformations": [],
+    "tests_prove_linguistics": false,
+    "tests_prove_brand_clearance": false
+  },
+  "palindromes": [
+    {
+      "id": "description",
+      "kana": "かがみのしきしのみがか",
+      "status": "selected_description",
+      "language_status": "intentional_composed_inscription"
+    },
+    {
+      "id": "window",
+      "kana": "まどかららかどま",
+      "status": "supplied_window_inscription",
+      "language_status": "intentional_composed_inscription"
+    }
+  ],
+  "selected_pair": {
+      "id": "kanotokoyo_yokotonoka",
+      "front": "歌ノ常世",
+      "kana": "かのとこよ",
+      "reveal": "夜言ノ香",
+      "reverse_kana": "よことのか",
+      "front_gloss": "the song's eternal realm",
+      "reverse_gloss": "fragrance of night words",
+      "language_status": "coined_titles_with_supplied_readings",
+      "status": "selected_title_reversal_pair",
+      "is_palindrome": false,
+      "kanji_faces_reverse": false,
+      "reading_note": "歌=か is intentional in this coined title; the complete compounds are not asserted as standard Japanese expressions.",
+      "source_urls": [
+        "https://www.kanjipedia.jp/kotoba/0003510000"
+      ]
+  },
+  "brand_review": {
+    "clearance": "not_established",
+    "note": "No claim of unused or legally cleared branding."
+  }
+}
